@@ -42,6 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessManagement\Person.cs" />
+    <Compile Include="DataAccess\FileData.cs" />
+    <Compile Include="DataAccess\IData.cs" />
+    <Compile Include="DataAccess\MemoryData.cs" />
+    <Compile Include="Dbo\Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
