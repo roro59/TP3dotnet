@@ -12,12 +12,21 @@ namespace TP3Unity.DataAccess
         public List<Person> Persons { get; set; }
         public List<Person> GetListPerson()
         {
-            throw new NotImplementedException();
+            return Persons;
         }
 
-        public bool AddPerson()
+        public bool AddPerson(string nom, string prenom)
         {
-            throw new NotImplementedException();
+            int count = Persons.Count;
+            Persons.Add(new Person(nom, prenom));
+            return count < Persons.Count;
+        }
+        public MemoryData()
+        {
+            Persons = new List<Person>();
+            AddPerson("Dirk", "Pitt");
+            AddPerson("Clive", "Cussler");
+            AddPerson("Patricia", "Corwell");
         }
     }
 }

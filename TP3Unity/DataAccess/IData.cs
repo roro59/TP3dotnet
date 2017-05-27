@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TP3Unity.Dbo;
 
 namespace TP3Unity.DataAccess
@@ -7,6 +8,6 @@ namespace TP3Unity.DataAccess
     {
         List<Person> Persons { get; set; }
         List<Person> GetListPerson();
-        bool AddPerson();
+        bool AddPerson(string nom, string prenom);
     } 
 }
