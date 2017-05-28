@@ -10,107 +10,112 @@ using WebApplication1.DataAccess;
 
 namespace WebApplication1.Controllers
 {
-    public class AuthorController : Controller
+    public class BookController : Controller
     {
         private IdotTP2Entities db = new IdotTP2Entities();
 
-        // GET: Author
+        // GET: Book
         public ActionResult Index()
         {
-            return View(db.T_Author.ToList());
+            var t_Book = db.T_Book.Include(t => t.T_Author);
+            return View(t_Book.ToList());
         }
 
-        // GET: Author/Details/5
+        // GET: Book/Details/5
         public ActionResult Details(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            T_Author t_Author = db.T_Author.Find(id);
-            if (t_Author == null)
+            T_Book t_Book = db.T_Book.Find(id);
+            if (t_Book == null)
             {
                 return HttpNotFound();
             }
-            return View(t_Author);
+            return View(t_Book);
         }
 
-        // GET: Author/Create
+        // GET: Book/Create
         public ActionResult Create()
         {
+            ViewBag.IdAuthor = new SelectList(db.T_Author, "Id", "Name");
             return View();
         }
 
-        // POST: Author/Create
+        // POST: Book/Create
         // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Firstname")] T_Author t_Author)
+        public ActionResult Create([Bind(Include = "Id,Title,Publication,IdAuthor")] T_Book t_Book)
         {
             if (ModelState.IsValid)
             {
-                db.T_Author.Add(t_Author);
+                db.T_Book.Add(t_Book);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(t_Author);
+            ViewBag.IdAuthor = new SelectList(db.T_Author, "Id", "Name", t_Book.IdAuthor);
+            return View(t_Book);
         }
 
-        // GET: Author/Edit/5
+        // GET: Book/Edit/5
         public ActionResult Edit(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            T_Author t_Author = db.T_Author.Find(id);
-            if (t_Author == null)
+            T_Book t_Book = db.T_Book.Find(id);
+            if (t_Book == null)
             {
                 return HttpNotFound();
             }
-            return View(t_Author);
+            ViewBag.IdAuthor = new SelectList(db.T_Author, "Id", "Name", t_Book.IdAuthor);
+            return View(t_Book);
         }
 
-        // POST: Author/Edit/5
+        // POST: Book/Edit/5
         // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Firstname")] T_Author t_Author)
+        public ActionResult Edit([Bind(Include = "Id,Title,Publication,IdAuthor")] T_Book t_Book)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(t_Author).State = EntityState.Modified;
+                db.Entry(t_Book).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(t_Author);
+            ViewBag.IdAuthor = new SelectList(db.T_Author, "Id", "Name", t_Book.IdAuthor);
+            return View(t_Book);
         }
 
-        // GET: Author/Delete/5
+        // GET: Book/Delete/5
         public ActionResult Delete(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            T_Author t_Author = db.T_Author.Find(id);
-            if (t_Author == null)
+            T_Book t_Book = db.T_Book.Find(id);
+            if (t_Book == null)
             {
                 return HttpNotFound();
             }
-            return View(t_Author);
+            return View(t_Book);
         }
 
-        // POST: Author/Delete/5
+        // POST: Book/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            T_Author t_Author = db.T_Author.Find(id);
-            db.T_Author.Remove(t_Author);
+            T_Book t_Book = db.T_Book.Find(id);
+            db.T_Book.Remove(t_Book);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

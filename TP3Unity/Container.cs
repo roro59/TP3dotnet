@@ -7,8 +7,7 @@ namespace TP3Unity
     {
         public void Configure()
         {
-            this.RegisterType<DataAccess.IData, DataAccess.MemoryData>();
+            this.RegisterType<DataAccess.IData, DataAccess.FileData>();
         }
-
     }
 }

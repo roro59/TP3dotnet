@@ -12,14 +12,21 @@ namespace TP3Unity.BusinessManagement
     {
         public static void ListPerson()
         {
-            Container container = new Container();
-            IData e = container.Resolve<IData>();
+            
+            IData e = Program.container.Resolve<IData>();
             foreach (var a in e.GetListPerson())
             {
-                          
+              Console.WriteLine(a.Nom + " " + a.Prenom);
             }
+        }
+
+        public static bool Addperson(string nom, string prenom)
+        {
             
-            
+            IData e = Program.container.Resolve<IData>();
+            return e.AddPerson(nom, prenom);
         }
     }
+
+    
 }

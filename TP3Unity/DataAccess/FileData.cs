@@ -27,7 +27,7 @@ namespace TP3Unity.DataAccess
         }
 
         public FileData()
-        {
+        {   Persons = new List<Person>();
             AddPerson("Dirk", "Pitt");
             AddPerson("Clive", "Cussler");
             AddPerson("Patricia", "Corwell");
