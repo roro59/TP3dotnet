@@ -9,9 +9,9 @@ using TP3Unity.Dbo;
 
 namespace TP3Unity.DataAccess
 {
-    class FileData : IData
+    class FileData : IData 
     {
-       
+        public StreamWriter Writer { get; set; }
         public List<Person> Persons { get; set; }
 
         public List<Person> GetListPerson()
@@ -22,15 +22,25 @@ namespace TP3Unity.DataAccess
         public bool AddPerson(string nom, string prenom)
         {
             int count = Persons.Count;
-            Persons.Add(new Person("Txt_"+nom, "Txt_"+ prenom));
+            Person person = new Person("Txt_" + nom, "Txt_" + prenom);
+            Persons.Add(person);
+            Writer.WriteLine(person.Nom + " " + person.Prenom);
+
             return count < Persons.Count;
         }
 
         public FileData()
         {   Persons = new List<Person>();
+            Writer = new StreamWriter("out.txt");
+
             AddPerson("Dirk", "Pitt");
             AddPerson("Clive", "Cussler");
             AddPerson("Patricia", "Corwell");
+        }
+
+        public void Dispose()
+        {
+            Writer.Dispose();
         }
     }
 }

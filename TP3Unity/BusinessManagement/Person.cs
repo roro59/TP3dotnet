@@ -8,23 +8,30 @@ using TP3Unity.DataAccess;
 
 namespace TP3Unity.BusinessManagement
 {
-    class Person
+    class Person : IDisposable
     {
-        public static void ListPerson()
+        public IData data { get; set; }
+        public void ListPerson()
         {
-            
-            IData e = Program.container.Resolve<IData>();
-            foreach (var a in e.GetListPerson())
-            {
-              Console.WriteLine(a.Nom + " " + a.Prenom);
-            }
+                foreach (var a in data.GetListPerson())
+                {
+                    Console.WriteLine(a.Nom + " " + a.Prenom);
+                }
         }
 
-        public static bool Addperson(string nom, string prenom)
+        public bool Addperson(string nom, string prenom)
         {
-            
-            IData e = Program.container.Resolve<IData>();
-            return e.AddPerson(nom, prenom);
+        return data.AddPerson(nom, prenom);
+    
+        }
+
+        public Person()
+        {   
+        }
+
+        public void Dispose()
+        {
+            data.Dispose();
         }
     }
 

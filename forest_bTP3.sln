@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26228.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TP3Unity", "TP3Unity\TP3Unity.csproj", "{3CEAA6EA-15BC-4616-A276-61C6CF3323B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TP3SiteWeb", "WebApplication1\TP3SiteWeb.csproj", "{EA94C517-C73B-46D5-BC6D-1DAC66D6024F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TP3SiteWeb", "TP3SiteWeb\TP3SiteWeb.csproj", "{EA94C517-C73B-46D5-BC6D-1DAC66D6024F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

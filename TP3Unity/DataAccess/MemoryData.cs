@@ -28,5 +28,9 @@ namespace TP3Unity.DataAccess
             AddPerson("Clive", "Cussler");
             AddPerson("Patricia", "Corwell");
         }
+
+        public void Dispose()
+        {
+        }
     }
 }
