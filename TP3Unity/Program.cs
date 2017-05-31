@@ -17,12 +17,10 @@ namespace TP3Unity
         {
             Container container = new Container();
             container.Configure();
-            Person e = new Person();
-            e.data = container.Resolve<IData>();
+            Person e = new Person {Data = container.Resolve<IData>()};
             string line = "y";
-            using (e)
+            using (e.Data)
             {
-
                 do
                 {
                     e.ListPerson();
